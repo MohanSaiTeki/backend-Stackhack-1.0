@@ -26,7 +26,7 @@ Login.post("/", (req, res) => {
                 }
 
                 let token = jwt.sign(payload, email, {
-                    expiresIn: 1440
+                    expiresIn: 60
                 })
                 
                 res.json({

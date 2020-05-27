@@ -7,6 +7,7 @@ const app = express()
 
 const Register = require("./routes/user.register")
 const Login = require("./routes/user.login")
+const AppView = require("./routes/user.appview")
 
 var corsOptions = {
     origin: "http://localhost:8081"
@@ -24,6 +25,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 // routes
 app.use("/register", Register)
 app.use("/login", Login)
+app.use("/", AppView)
 
 const PORT = 8080
 
