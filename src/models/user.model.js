@@ -1,16 +1,19 @@
 // 
 // User model that contains user email password and there to do tasks
 // 
-var mongoose = require("mongoose");
+let mongoose = require("mongoose");
 
-var UserSchema = mongoose.Schema({
+let UserSchema = mongoose.Schema({
     email: {
         type: String,
         required: true
     },
     username: String,
     password: String,
-    todolist: Array
+    todoList: [{
+        type: mongoose.Schema.Types.ObjectID,
+        ref: 'ToDoList'
+    }]
 })
 
 module.exports = mongoose.model("Users", UserSchema)

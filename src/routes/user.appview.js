@@ -8,14 +8,25 @@ const App = express.Router()
 App.use(cors())
 
 App.get("/", (req, res) => {
-    var check = jwt.verify(req.headers['authorization'], req.body.email, (output) => {
-        console.log(output)
+    jwt.verify(req.headers['authorization'], req.body.email, (err, decode) => {
+
+        if (err == null){
+            UserModel.findOne({
+                email: decode.email
+                }).populate('todoList')
+                .then( result => {
+                    res.json({
+                        todoList: result.todoList
+                    })
+                })
+        } else {
+            res.json({
+                status: "TokenExpiredError",
+                message: "JSON Token Expired"
+            })
+        }
     })
 
-
-    res.json({
-        "message": "Ok"
-    })
 })
 
 module.exports = App

@@ -26,7 +26,7 @@ Login.post("/", (req, res) => {
                 }
 
                 let token = jwt.sign(payload, email, {
-                    expiresIn: 60
+                    expiresIn: 7200
                 })
                 
                 res.json({
@@ -36,12 +36,14 @@ Login.post("/", (req, res) => {
                 })
             } else {
                 res.json({
-                    status: "Password is incorrect"
+                    status: "PasswordIncorrect",
+                    message: "Password is incorrect"
                 })
             }
         } else {
             res.json({
-                status: "User doesn't exist"
+                status: "UserDoesntExist",
+                message: "User doesn't exist"
             })
         }
     })
