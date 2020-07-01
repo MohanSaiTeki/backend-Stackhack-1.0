@@ -12,15 +12,10 @@ const TodoAdd = require("./routes/todo.add")
 const TodoDelete = require("./routes/todo.delete")
 const TodoUpdate = require("./routes/todo.update")
 
-var corsOptions = {
-    origin: "http://localhost:8081"
-}
-
-
 // connect to database
 mongoose.connect("mongodb://localhost:27017/devuserdb", {useNewUrlParser: true} ).catch( err => console.log(err))
 
-app.use(cors(corsOptions))
+app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 

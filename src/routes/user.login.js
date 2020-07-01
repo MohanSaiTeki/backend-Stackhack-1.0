@@ -14,6 +14,8 @@ Login.post("/", (req, res) => {
     let username = req.body.username
     let password = req.body.password
 
+    console.log(email, password, username)
+
     UserModel.findOne({
         email: email
     })

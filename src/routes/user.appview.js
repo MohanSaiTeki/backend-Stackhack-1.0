@@ -8,7 +8,7 @@ const App = express.Router()
 App.use(cors())
 
 App.get("/", (req, res) => {
-    jwt.verify(req.headers['authorization'], req.body.email, (err, decode) => {
+    jwt.verify(req.headers['authorization'], req.headers['email'], (err, decode) => {
 
         if (err == null){
             UserModel.findOne({
